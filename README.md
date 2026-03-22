@@ -2,6 +2,14 @@
 
 Share your Claude Code session with a browser.
 
+## Who is this for?
+
+**Use Claude from your phone or tablet.** Start a session on your machine, open the link on your phone, and use Claude from anywhere.
+
+**Let others watch your session.** Share the link so others can see what Claude is doing in real-time. Use `--read-only` so they can't type.
+
+**Let others control your session.** Share the link and let someone else interact with Claude on your machine. This is the default.
+
 ## Install
 
 ```
@@ -54,14 +62,6 @@ To make the session accessible outside your local network, run the server on a m
 share-my-claude --read-only                        # viewers can only watch
 share-my-claude --host https://my-server.com --port 443  # use your own server
 ```
-
-## Who is this for?
-
-**Use Claude from your phone or tablet.** Start a session on your machine, open the link on your phone, and use Claude from anywhere.
-
-**Let others watch your session.** Share the link so others can see what Claude is doing in real-time. Use `--read-only` so they can't type.
-
-**Let others control your session.** Share the link and let someone else interact with Claude on your machine. This is the default.
 
 ## Security
 
