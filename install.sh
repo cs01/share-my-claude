@@ -72,22 +72,23 @@ main() {
 #!/bin/sh
 set -eu
 
-HOST="${HOST:-http://localhost}"
-PORT="${PORT:-8000}"
+HOST="${HOST:-https://chadsmith.dev/termpair}"
+PORT="${PORT:-0}"
 CMD="${CMD:-claude}"
 READ_ONLY=""
+LOCAL=""
 
 usage() {
   echo "Usage: share-my-claude [options]"
   echo ""
   echo "Share your Claude Code session with anyone via a link."
-  echo "Starts a server and shares your terminal in one command."
   echo ""
   echo "Options:"
-  echo "  --host URL     server host (default: http://localhost)"
-  echo "  --port PORT    server port (default: 8000)"
+  echo "  --host URL     server url (default: https://chadsmith.dev/termpair)"
+  echo "  --port PORT    server port (default: none, uses host url)"
   echo "  --cmd CMD      command to run (default: claude)"
   echo "  --read-only    prevent viewers from typing"
+  echo "  --local        run a local server instead of using the public one"
   echo "  -h, --help     show this help"
 }
 
@@ -97,6 +98,7 @@ while [ $# -gt 0 ]; do
     --port) PORT="$2"; shift 2 ;;
     --cmd) CMD="$2"; shift 2 ;;
     --read-only) READ_ONLY="--read-only"; shift ;;
+    --local) LOCAL="1"; HOST="http://localhost"; PORT="8000"; shift ;;
     -h|--help) usage; exit 0 ;;
     *) echo "Unknown option: $1" >&2; usage >&2; exit 1 ;;
   esac
@@ -115,9 +117,11 @@ cleanup() {
 }
 trap cleanup EXIT INT TERM
 
-termpair serve --port "$PORT" &
-SERVER_PID=$!
-sleep 1
+if [ -n "$LOCAL" ]; then
+  termpair serve --port "$PORT" &
+  SERVER_PID=$!
+  sleep 1
+fi
 
 termpair share --cmd "$CMD" --host "$HOST" --port "$PORT" --open-browser $READ_ONLY
 SCRIPT

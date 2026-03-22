@@ -10,6 +10,8 @@ curl -fsSL https://raw.githubusercontent.com/cs01/share-my-claude/main/install.s
 
 ## Usage
 
+By default, share-my-claude uses a free public server so you don't have to set anything up.
+
 ```
 $ share-my-claude
 ```
@@ -17,7 +19,7 @@ $ share-my-claude
 ```
 Connection is ready. Sharing terminal at:
 
-  http://localhost:8000/s/a3f9xK7m#xK7mN2pQ9vR1tY4w8bF3cA
+  https://chadsmith.dev/termpair/s/a3f9xK7m#xK7mN2pQ9vR1tY4w8bF3cA
 
  ╭────────────────────────────────────────────────────────────╮
  │                                                            │
@@ -45,6 +47,22 @@ share-my-claude --read-only
 ```
 share-my-claude
 ```
+
+## Self-hosting
+
+Don't want to use the public server? Run your own:
+
+```
+termpair serve --port 8000
+```
+
+Then point share-my-claude at it:
+
+```
+share-my-claude --host http://your-server.com --port 8000
+```
+
+The server is a blind relay — it routes encrypted messages but never decrypts them. Still, if you want full control, self-hosting is easy. See [termpair](https://github.com/cs01/termpair) for details.
 
 ## Security
 
