@@ -8,13 +8,24 @@ Share your Claude Code session with a browser.
 curl -fsSL https://raw.githubusercontent.com/cs01/share-my-claude/main/install.sh | sh
 ```
 
-## Usage
+This installs `termpair` (the server/client) and `share-my-claude` (a wrapper that runs `termpair share --cmd claude`).
 
-Start a termpair server, then share:
+## Quick Start
+
+**1. Start the server**
 
 ```
-termpair serve --port 8000 &
-share-my-claude
+termpair serve --port 8000
+```
+
+This is the relay that routes encrypted data between your terminal and the browser. It never sees your data — everything is end-to-end encrypted.
+
+**2. Share your Claude session**
+
+In another terminal:
+
+```
+share-my-claude --host http://localhost --port 8000
 ```
 
 ```
@@ -31,22 +42,18 @@ Connection is ready. Sharing terminal at:
  ╰────────────────────────────────────────────────────────────╯
 ```
 
-Open the link in any browser. `share-my-claude` passes all arguments through to `termpair share`, so you can use any termpair flags:
+**3. Open the link** in any browser. Done.
+
+To make the session accessible outside your local network, run the server on a machine with a public IP or use a tunnel (ngrok, cloudflare tunnel, etc).
+
+## Options
+
+`share-my-claude` passes all arguments through to `termpair share`:
 
 ```
-share-my-claude --read-only
-share-my-claude --host https://my-server.com --port 443
+share-my-claude --read-only                        # viewers can only watch
+share-my-claude --host https://my-server.com --port 443  # use your own server
 ```
-
-### Public server
-
-Don't want to run your own server? Use the free public one:
-
-```
-share-my-claude --host https://chadsmith.dev/termpair --port 0
-```
-
-The server is a blind relay — all data is end-to-end encrypted and the server never sees your data.
 
 ## Who is this for?
 
@@ -58,7 +65,7 @@ The server is a blind relay — all data is end-to-end encrypted and the server 
 
 ## Security
 
-All data is end-to-end encrypted (AES-128-GCM). The server is a blind relay and never sees your data. The encryption key is in the URL fragment, which is never sent to the server.
+All data is end-to-end encrypted (AES-128-GCM). The server is a blind relay — it routes messages but never decrypts them. The encryption key lives in the URL fragment, which is never sent to the server.
 
 ## Want to share other terminal apps?
 
