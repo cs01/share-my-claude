@@ -1,4 +1,4 @@
-# share-my-claude
+# sharemyclaude
 
 Share your Claude Code session with a browser.
 
@@ -13,10 +13,10 @@ Share your Claude Code session with a browser.
 ## Install
 
 ```
-curl -fsSL https://raw.githubusercontent.com/cs01/share-my-claude/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/cs01/sharemyclaude/main/install.sh | sh
 ```
 
-This installs `termpair` (the server/client) and `share-my-claude` (a wrapper that runs `termpair share --cmd claude`).
+This installs `termpair` (the server/client) and `sharemyclaude` (a wrapper that runs `termpair share --cmd claude`).
 
 ## Quick Start
 
@@ -33,7 +33,7 @@ This is the relay that routes encrypted data between your terminal and the brows
 In another terminal:
 
 ```
-share-my-claude --host http://localhost --port 8000
+sharemyclaude --host http://localhost --port 8000
 ```
 
 ```
@@ -56,11 +56,11 @@ To make the session accessible outside your local network, run the server on a m
 
 ## Options
 
-`share-my-claude` passes all arguments through to `termpair share`:
+`sharemyclaude` passes all arguments through to `termpair share`:
 
 ```
-share-my-claude --read-only                        # viewers can only watch
-share-my-claude --host https://my-server.com --port 443  # use your own server
+sharemyclaude --read-only                        # viewers can only watch
+sharemyclaude --host https://my-server.com --port 443  # use your own server
 ```
 
 ## Security
@@ -69,7 +69,7 @@ All data is end-to-end encrypted (AES-128-GCM). The server is a blind relay — 
 
 ## Want to share other terminal apps?
 
-share-my-claude is built on [termpair](https://github.com/cs01/termpair), which can share any terminal app (vim, htop, your shell, etc).
+sharemyclaude is built on [termpair](https://github.com/cs01/termpair), which can share any terminal app (vim, htop, your shell, etc).
 
 ---
 
