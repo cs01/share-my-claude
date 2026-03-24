@@ -2,13 +2,20 @@
 
 Share your Claude Code session over the web. Public or private, one command.
 
-**Access Claude from your phone** — start a session on your machine, open the link on any device, and control Claude from anywhere.
+<p align="center">
+<img src="sharemyclaude_terminal.png" width="500" alt="sharemyclaude terminal"/>
+</p>
+<p align="center">
+<img src="sharemyclaude_browser.png" width="600" alt="sharemyclaude browser view"/>
+</p>
 
-**Share publicly** — broadcast your session unencrypted on the sharemyclau.de landing page for anyone to watch.
+**Access Claude from your phone** -- start a session on your machine, open the link on any device, and control Claude from anywhere.
 
-**Share privately** — end-to-end encrypted by default. Only people with the link can view your session.
+**Share publicly** -- broadcast your session on the [sharemyclau.de](https://sharemyclau.de) landing page for anyone to watch.
 
-**Watch others** — browse public sessions on sharemyclau.de and watch Claude work in real-time.
+**Share privately** -- end-to-end encrypted by default. Only people with the link can view your session.
+
+**Watch others** -- browse public sessions on [sharemyclau.de](https://sharemyclau.de) and watch Claude work in real-time.
 
 ## Install
 
@@ -40,24 +47,23 @@ sharemyclaude
 
 ## Options
 
-All arguments are passed through to `termpair share`:
-
 ```
-sharemyclaude --read-only       # viewers can only watch, can't type
-sharemyclaude --public          # listed on sharemyclau.de landing page
-sharemyclaude --host http://localhost --port 8000  # use your own server
-sharemyclaude --skill           # print instructions for AI agents
+sharemyclaude                          # private encrypted session (default)
+sharemyclaude --public                 # listed on sharemyclau.de, no encryption
+sharemyclaude --read-only              # viewers can watch but can't type
+sharemyclaude -- --model sonnet        # pass flags to claude after --
+sharemyclaude -- --dangerously-skip-permissions  # skip claude's permission prompts
 ```
 
 ## Security
 
-Private sessions are end-to-end encrypted (AES-128-GCM). The server is a blind relay — it routes messages but never decrypts them. The encryption key lives in the URL fragment, which is never sent to the server.
+Private sessions are end-to-end encrypted (AES-128-GCM). The server is a blind relay -- it routes messages but never decrypts them. The encryption key lives in the URL fragment, which is never sent to the server.
 
-Public sessions (`--public`) are **not encrypted** — they are listed on the landing page and viewable by anyone. Use private mode (the default) when sharing sensitive work.
+Public sessions (`--public`) are **not encrypted** -- they are listed on the landing page and viewable by anyone. Use private mode (the default) when sharing sensitive work.
 
 ## Built on termpair
 
-sharemyclaude is a wrapper around [termpair](https://github.com/cs01/termpair), which provides end-to-end encrypted terminal sharing for any terminal app — vim, htop, your shell, or anything else. If you want to self-host or share non-Claude sessions, check out termpair directly.
+sharemyclaude is a wrapper around [termpair](https://github.com/cs01/termpair), which provides end-to-end encrypted terminal sharing for any terminal app -- vim, htop, your shell, or anything else. If you want to self-host or share non-Claude sessions, check out termpair directly.
 
 ---
 
