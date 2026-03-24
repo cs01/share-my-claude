@@ -153,10 +153,10 @@ function loadXtermAssets() {
     if (window.Terminal) { resolve(); return; }
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "xterm.min.css";
+    link.href = "/xterm.min.css";
     document.head.appendChild(link);
     const script = document.createElement("script");
-    script.src = "xterm.min.js";
+    script.src = "/xterm.min.js";
     script.onload = resolve;
     document.body.appendChild(script);
   });
@@ -569,7 +569,8 @@ function startSessionPolling() {
 // ---- Init ----
 
 function init() {
-  $id("version").textContent = `v${TERMPAIR_VERSION}`;
+  const versionEl = $id("version");
+  if (versionEl) versionEl.textContent = `v${TERMPAIR_VERSION}`;
 
   const baseUrl = getServerBaseUrl();
   const port = window.location.port || (window.location.protocol === "https:" ? "443" : "80");
